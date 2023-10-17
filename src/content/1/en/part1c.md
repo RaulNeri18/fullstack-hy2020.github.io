@@ -217,8 +217,9 @@ the component won't re-render. We can get the component to re-render by calling 
 ```js
 let counter = 1
 
+const root = ReactDOM.createRoot(document.getElementById('root'))
 const refresh = () => {
-  ReactDOM.createRoot(document.getElementById('root')).render(
+  root.render(
     <App counter={counter} />
   )
 }
@@ -229,6 +230,8 @@ refresh()
 counter += 1
 refresh()
 ```
+
+Note that it is necessary to create the variable _root_ in order to avoid the following message: 'Warning: You are calling ReactDOMClient.createRoot() on a container that has already been passed to createRoot() before. Instead, call root.render() on the existing root instead if you want to update it.'
 
 The re-rendering command has been wrapped inside of the _refresh_ function to cut down on the amount of copy-pasted code.
 
